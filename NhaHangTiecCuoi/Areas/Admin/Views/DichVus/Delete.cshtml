@@ -1,0 +1,45 @@
+﻿@model NhaHangTiecCuoi.DichVu
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h3>Bạn có muốn xóa dịch vụ này không?</h3>
+<div>
+    <img src="~/Content/photo/@Html.DisplayFor(model => model.Img)" width="350" />
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Dịch Vụ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDV)
+        </dd>
+
+        <dt>
+            Giá Dịch Vụ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+        <dt>
+            Tên Loại Dịch Vụ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiDichVu.TenLoai)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        @Html.ActionLink("Xóa", "Edit", new { id = Model.MaDV }) |
+        <a href="http://localhost:50458/Admin/DichVus" class="btn btn-danger">Hủy</a>
+    </div>
+    }
+</div>

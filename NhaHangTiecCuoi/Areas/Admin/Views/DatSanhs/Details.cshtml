@@ -1,0 +1,83 @@
+﻿@model NhaHangTiecCuoi.DatSanh
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông Tin Đặt Tiệc</h2>
+
+<div>
+    <h4>DatSanh</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Khách Hàng 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKhachHang)
+        </dd>
+
+        <dt>
+            Số Điện Thoại Khách
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDTKhach)
+        </dd>
+
+        <dt>
+            Ngày Đặt
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayDat)
+        </dd>
+
+        <dt>
+            Ngày Thanh Toán
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayThanhToan)
+        </dd>
+
+        <dt>
+            Buổi Tổ Chức Tiệc
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ca)
+        </dd>
+
+        <dt>
+            Tên Dịch Vụ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DichVu.TenDV)
+        </dd>
+
+        <dt>
+            Tên Sảnh
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sanh.TenSanh)
+        </dd>
+
+        <dt>
+            Số Lượng Thực Đơn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thuc_Don.SoLuong)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaDatSanh }) |
+    <a href="http://localhost:50458/Admin/DatSanhs" class="btn btn-danger">Hủy</a>
+</p>

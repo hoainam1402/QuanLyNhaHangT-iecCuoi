@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="298eab66d0c64829a45b01bdb75c2daa" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyNhaHangTiecCuoiModel.DatSanh" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyNhaHangTiecCuoiModel.DichVu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyNhaHangTiecCuoiModel.DongThucDon" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyNhaHangTiecCuoiModel.LoaiDichVu" Width="1.5" PointX="1.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyNhaHangTiecCuoiModel.LoaiMon" Width="1.5" PointX="1.5" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyNhaHangTiecCuoiModel.MonAn" Width="1.5" PointX="3.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyNhaHangTiecCuoiModel.Sanh" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyNhaHangTiecCuoiModel.Thuc_Don" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyNhaHangTiecCuoiModel.User" Width="1.5" PointX="3.75" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyNhaHangTiecCuoiModel.FK_DatSanh_DichVu" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyNhaHangTiecCuoiModel.FK_DatSanh_Sanh" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyNhaHangTiecCuoiModel.FK_DatSanh_Thuc_Don1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyNhaHangTiecCuoiModel.FK_DichVu_LoaiDichVu" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyNhaHangTiecCuoiModel.FK_DongThucDon_MonAn" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyNhaHangTiecCuoiModel.FK_DongThucDon_Thuc_Don1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyNhaHangTiecCuoiModel.FK_MonAn_LoaiMon" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

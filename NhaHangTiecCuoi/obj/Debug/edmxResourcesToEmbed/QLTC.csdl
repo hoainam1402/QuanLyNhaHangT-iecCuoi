@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyNhaHangTiecCuoiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DatSanh">
+    <Key>
+      <PropertyRef Name="MaDatSanh" />
+    </Key>
+    <Property Name="MaDatSanh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDTKhach" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NgayDat" Type="DateTime" Precision="3" />
+    <Property Name="MaSanh" Type="Int32" />
+    <Property Name="NgayThanhToan" Type="DateTime" Precision="3" />
+    <Property Name="MaTD" Type="Int32" />
+    <Property Name="MaDV" Type="Int32" />
+    <Property Name="Ca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DichVu" Relationship="Self.FK_DatSanh_DichVu" FromRole="DatSanh" ToRole="DichVu" />
+    <NavigationProperty Name="Sanh" Relationship="Self.FK_DatSanh_Sanh" FromRole="DatSanh" ToRole="Sanh" />
+    <NavigationProperty Name="Thuc_Don" Relationship="Self.FK_DatSanh_Thuc_Don1" FromRole="DatSanh" ToRole="Thuc_Don" />
+  </EntityType>
+  <EntityType Name="DichVu">
+    <Key>
+      <PropertyRef Name="MaDV" />
+    </Key>
+    <Property Name="MaDV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="MaLoaiDV" Type="Int32" />
+    <Property Name="Img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DatSanhs" Relationship="Self.FK_DatSanh_DichVu" FromRole="DichVu" ToRole="DatSanh" />
+    <NavigationProperty Name="LoaiDichVu" Relationship="Self.FK_DichVu_LoaiDichVu" FromRole="DichVu" ToRole="LoaiDichVu" />
+  </EntityType>
+  <EntityType Name="LoaiDichVu">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DichVus" Relationship="Self.FK_DichVu_LoaiDichVu" FromRole="LoaiDichVu" ToRole="DichVu" />
+  </EntityType>
+  <EntityType Name="LoaiMon">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MonAns" Relationship="Self.FK_MonAn_LoaiMon" FromRole="LoaiMon" ToRole="MonAn" />
+  </EntityType>
+  <EntityType Name="MonAn">
+    <Key>
+      <PropertyRef Name="MaMon" />
+    </Key>
+    <Property Name="MaMon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenMon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaLoai" Type="Int32" />
+    <Property Name="Gia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LoaiMon" Relationship="Self.FK_MonAn_LoaiMon" FromRole="MonAn" ToRole="LoaiMon" />
+    <NavigationProperty Name="Thuc_Don" Relationship="Self.DongThucDon" FromRole="MonAn" ToRole="Thuc_Don" />
+  </EntityType>
+  <EntityType Name="Sanh">
+    <Key>
+      <PropertyRef Name="MaSanh" />
+    </Key>
+    <Property Name="MaSanh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenSanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DatSanhs" Relationship="Self.FK_DatSanh_Sanh" FromRole="Sanh" ToRole="DatSanh" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Thuc_Don">
+    <Key>
+      <PropertyRef Name="MaTD" />
+    </Key>
+    <Property Name="MaTD" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="DatSanhs" Relationship="Self.FK_DatSanh_Thuc_Don1" FromRole="Thuc_Don" ToRole="DatSanh" />
+    <NavigationProperty Name="MonAns" Relationship="Self.DongThucDon" FromRole="Thuc_Don" ToRole="MonAn" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Quyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sdt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_DatSanh_DichVu">
+    <End Role="DichVu" Type="Self.DichVu" Multiplicity="0..1" />
+    <End Role="DatSanh" Type="Self.DatSanh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DichVu">
+        <PropertyRef Name="MaDV" />
+      </Principal>
+      <Dependent Role="DatSanh">
+        <PropertyRef Name="MaDV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DatSanh_Sanh">
+    <End Role="Sanh" Type="Self.Sanh" Multiplicity="0..1" />
+    <End Role="DatSanh" Type="Self.DatSanh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sanh">
+        <PropertyRef Name="MaSanh" />
+      </Principal>
+      <Dependent Role="DatSanh">
+        <PropertyRef Name="MaSanh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DatSanh_Thuc_Don1">
+    <End Role="Thuc_Don" Type="Self.Thuc_Don" Multiplicity="0..1" />
+    <End Role="DatSanh" Type="Self.DatSanh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thuc_Don">
+        <PropertyRef Name="MaTD" />
+      </Principal>
+      <Dependent Role="DatSanh">
+        <PropertyRef Name="MaTD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DichVu_LoaiDichVu">
+    <End Role="LoaiDichVu" Type="Self.LoaiDichVu" Multiplicity="0..1" />
+    <End Role="DichVu" Type="Self.DichVu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiDichVu">
+        <PropertyRef Name="MaLoai" />
+      </Principal>
+      <Dependent Role="DichVu">
+        <PropertyRef Name="MaLoaiDV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MonAn_LoaiMon">
+    <End Role="LoaiMon" Type="Self.LoaiMon" Multiplicity="0..1" />
+    <End Role="MonAn" Type="Self.MonAn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiMon">
+        <PropertyRef Name="MaLoai" />
+      </Principal>
+      <Dependent Role="MonAn">
+        <PropertyRef Name="MaLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DongThucDon">
+    <End Role="MonAn" Type="Self.MonAn" Multiplicity="*" />
+    <End Role="Thuc_Don" Type="Self.Thuc_Don" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="QLyNhaHangTiecCuoiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DatSanhs" EntityType="Self.DatSanh" />
+    <EntitySet Name="DichVus" EntityType="Self.DichVu" />
+    <EntitySet Name="LoaiDichVus" EntityType="Self.LoaiDichVu" />
+    <EntitySet Name="LoaiMons" EntityType="Self.LoaiMon" />
+    <EntitySet Name="MonAns" EntityType="Self.MonAn" />
+    <EntitySet Name="Sanhs" EntityType="Self.Sanh" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Thuc_Don" EntityType="Self.Thuc_Don" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_DatSanh_DichVu" Association="Self.FK_DatSanh_DichVu">
+      <End Role="DichVu" EntitySet="DichVus" />
+      <End Role="DatSanh" EntitySet="DatSanhs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DatSanh_Sanh" Association="Self.FK_DatSanh_Sanh">
+      <End Role="Sanh" EntitySet="Sanhs" />
+      <End Role="DatSanh" EntitySet="DatSanhs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DatSanh_Thuc_Don1" Association="Self.FK_DatSanh_Thuc_Don1">
+      <End Role="Thuc_Don" EntitySet="Thuc_Don" />
+      <End Role="DatSanh" EntitySet="DatSanhs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DichVu_LoaiDichVu" Association="Self.FK_DichVu_LoaiDichVu">
+      <End Role="LoaiDichVu" EntitySet="LoaiDichVus" />
+      <End Role="DichVu" EntitySet="DichVus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MonAn_LoaiMon" Association="Self.FK_MonAn_LoaiMon">
+      <End Role="LoaiMon" EntitySet="LoaiMons" />
+      <End Role="MonAn" EntitySet="MonAns" />
+    </AssociationSet>
+    <AssociationSet Name="DongThucDon" Association="Self.DongThucDon">
+      <End Role="MonAn" EntitySet="MonAns" />
+      <End Role="Thuc_Don" EntitySet="Thuc_Don" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,30 @@
+﻿@model NhaHangTiecCuoi.LoaiDichVu
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h3>Bạn có thật sự muốn xóa loại dịch vụ này không?</h3>
+<div>
+    <h4>LoaiDichVu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Loại Dịch Vụ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLoai)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Lưu" class="btn btn-success" />|
+        <a href="http://localhost:50458/Admin/LoaiDichVus" class="btn btn-danger">Hủy</a>
+    </div>
+    }
+</div>

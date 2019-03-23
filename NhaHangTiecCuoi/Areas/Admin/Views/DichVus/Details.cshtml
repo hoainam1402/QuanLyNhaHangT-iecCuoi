@@ -1,0 +1,42 @@
+﻿@model NhaHangTiecCuoi.DichVu
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông Tin Dịch Vụ</h2>
+
+<div>
+    <hr />
+    <img src="~/Content/photo/@Html.DisplayFor(model => model.Img)" width="350" />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Dịch Vụ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDV)
+        </dd>
+
+        <dt>
+            Giá Dịch Vụ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+        <dt>
+            Tên Loại Dịch Vụ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiDichVu.TenLoai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaDV }) |
+    <a href="http://localhost:50458/Admin/DichVus" class="btn btn-danger">Hủy</a>
+</p>

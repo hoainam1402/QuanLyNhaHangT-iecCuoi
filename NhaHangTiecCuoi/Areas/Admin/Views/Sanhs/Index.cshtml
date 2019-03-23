@@ -1,0 +1,48 @@
+﻿@model IEnumerable<NhaHangTiecCuoi.Sanh>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>Danh Sách Sảnh Tiệc</h2>
+<p>
+    <a href="http://localhost:50458/Admin/Sanhs/Create" class="btn btn-success">Thêm mới</a>
+</p>
+<table class="table" cellpadding="20" border="1" >
+    <thead>
+        <tr>
+            <th>
+                Tên Sảnh
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>
+                Hình ảnh
+            </th>
+            <th>
+                Tùy Chỉnh
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSanh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td>
+                <img alt="@item.Img" src="~/Content/photo/@item.Img" width="550"/>
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.MaSanh }) |
+                @Html.ActionLink("Thông Tin", "Details", new { id = item.MaSanh }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaSanh })
+            </td>
+        </tr>
+    }
+
+</table>

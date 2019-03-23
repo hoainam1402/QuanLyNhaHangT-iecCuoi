@@ -1,0 +1,54 @@
+﻿@model IEnumerable<NhaHangTiecCuoi.DichVu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh Sách Các Dịch Vụ</h2>
+
+<p>
+    <a href="http://localhost:50458/Admin/DichVus/Create" class="btn btn-success">Thêm mới</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Tên Dịch Vụ
+        </th>
+        <th>
+            Giá Dịch Vụ
+        </th>
+        <th>
+            <center> Hình Ảnh</center>
+        </th>
+        <th>
+            Tên Loại Dịch Vụ
+        </th>
+        <th>
+            <center>Tùy Chỉnh </center>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenDV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DonGia)
+        </td>
+        <td>
+            <img alt="@item.Img" src="~/Content/photo/@item.Img" width="250" height="200"/>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiDichVu.TenLoai)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.MaDV }) |
+            @Html.ActionLink("Thông Tin", "Details", new { id=item.MaDV }) |
+            @Html.ActionLink("Xóa Dịch Vụ", "Delete", new { id=item.MaDV })
+        </td>
+    </tr>
+}
+
+</table>

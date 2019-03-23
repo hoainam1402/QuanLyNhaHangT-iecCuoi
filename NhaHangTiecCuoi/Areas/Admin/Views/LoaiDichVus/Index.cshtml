@@ -1,0 +1,36 @@
+﻿@model IEnumerable<NhaHangTiecCuoi.LoaiDichVu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh Sách Loại Dịch Vụ</h2>
+
+<p>
+    <a href="http://localhost:50458/Admin/LoaiDichVus/Create" class="btn btn-success">Thêm mới</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Tên Loại Dịch Vụ
+        </th>
+        <th>
+            Tùy Chọn
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenLoai)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.MaLoai }) |
+            @Html.ActionLink("Thông Tin", "Details", new { id=item.MaLoai }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.MaLoai })
+        </td>
+    </tr>
+}
+
+</table>

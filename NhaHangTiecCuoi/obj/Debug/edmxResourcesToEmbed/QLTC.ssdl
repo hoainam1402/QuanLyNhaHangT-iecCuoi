@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyNhaHangTiecCuoiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DatSanh">
+    <Key>
+      <PropertyRef Name="MaDatSanh" />
+    </Key>
+    <Property Name="MaDatSanh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKhachHang" Type="nvarchar" MaxLength="50" />
+    <Property Name="SDTKhach" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="NgayDat" Type="datetime" />
+    <Property Name="MaSanh" Type="int" />
+    <Property Name="NgayThanhToan" Type="datetime" />
+    <Property Name="MaTD" Type="int" />
+    <Property Name="MaDV" Type="int" />
+    <Property Name="Ca" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DichVu">
+    <Key>
+      <PropertyRef Name="MaDV" />
+    </Key>
+    <Property Name="MaDV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDV" Type="nvarchar" MaxLength="50" />
+    <Property Name="DonGia" Type="money" />
+    <Property Name="MaLoaiDV" Type="int" />
+    <Property Name="Img" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DongThucDon">
+    <Key>
+      <PropertyRef Name="MaMA" />
+      <PropertyRef Name="MaTD" />
+    </Key>
+    <Property Name="MaMA" Type="int" Nullable="false" />
+    <Property Name="MaTD" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoaiDichVu">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LoaiMon">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MonAn">
+    <Key>
+      <PropertyRef Name="MaMon" />
+    </Key>
+    <Property Name="MaMon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenMon" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaLoai" Type="int" />
+    <Property Name="Gia" Type="money" />
+    <Property Name="Img" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sanh">
+    <Key>
+      <PropertyRef Name="MaSanh" />
+    </Key>
+    <Property Name="MaSanh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenSanh" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gia" Type="money" />
+    <Property Name="Img" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Thuc_Don">
+    <Key>
+      <PropertyRef Name="MaTD" />
+    </Key>
+    <Property Name="MaTD" Type="int" Nullable="false" />
+    <Property Name="SoLuong" Type="nchar" MaxLength="10" />
+    <Property Name="DonGia" Type="money" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaiKhoan" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="50" />
+    <Property Name="Quyen" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sdt" Type="nvarchar" MaxLength="50" />
+    <Property Name="Img" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_DatSanh_DichVu">
+    <End Role="DichVu" Type="Self.DichVu" Multiplicity="0..1" />
+    <End Role="DatSanh" Type="Self.DatSanh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DichVu">
+        <PropertyRef Name="MaDV" />
+      </Principal>
+      <Dependent Role="DatSanh">
+        <PropertyRef Name="MaDV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DatSanh_Sanh">
+    <End Role="Sanh" Type="Self.Sanh" Multiplicity="0..1" />
+    <End Role="DatSanh" Type="Self.DatSanh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sanh">
+        <PropertyRef Name="MaSanh" />
+      </Principal>
+      <Dependent Role="DatSanh">
+        <PropertyRef Name="MaSanh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DatSanh_Thuc_Don1">
+    <End Role="Thuc_Don" Type="Self.Thuc_Don" Multiplicity="0..1" />
+    <End Role="DatSanh" Type="Self.DatSanh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thuc_Don">
+        <PropertyRef Name="MaTD" />
+      </Principal>
+      <Dependent Role="DatSanh">
+        <PropertyRef Name="MaTD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DichVu_LoaiDichVu">
+    <End Role="LoaiDichVu" Type="Self.LoaiDichVu" Multiplicity="0..1" />
+    <End Role="DichVu" Type="Self.DichVu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiDichVu">
+        <PropertyRef Name="MaLoai" />
+      </Principal>
+      <Dependent Role="DichVu">
+        <PropertyRef Name="MaLoaiDV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DongThucDon_MonAn">
+    <End Role="MonAn" Type="Self.MonAn" Multiplicity="1" />
+    <End Role="DongThucDon" Type="Self.DongThucDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonAn">
+        <PropertyRef Name="MaMon" />
+      </Principal>
+      <Dependent Role="DongThucDon">
+        <PropertyRef Name="MaMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DongThucDon_Thuc_Don1">
+    <End Role="Thuc_Don" Type="Self.Thuc_Don" Multiplicity="1" />
+    <End Role="DongThucDon" Type="Self.DongThucDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thuc_Don">
+        <PropertyRef Name="MaTD" />
+      </Principal>
+      <Dependent Role="DongThucDon">
+        <PropertyRef Name="MaTD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MonAn_LoaiMon">
+    <End Role="LoaiMon" Type="Self.LoaiMon" Multiplicity="0..1" />
+    <End Role="MonAn" Type="Self.MonAn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiMon">
+        <PropertyRef Name="MaLoai" />
+      </Principal>
+      <Dependent Role="MonAn">
+        <PropertyRef Name="MaLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyNhaHangTiecCuoiModelStoreContainer">
+    <EntitySet Name="DatSanh" EntityType="Self.DatSanh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DichVu" EntityType="Self.DichVu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DongThucDon" EntityType="Self.DongThucDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiDichVu" EntityType="Self.LoaiDichVu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiMon" EntityType="Self.LoaiMon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MonAn" EntityType="Self.MonAn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sanh" EntityType="Self.Sanh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Thuc_Don" EntityType="Self.Thuc_Don" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DatSanh_DichVu" Association="Self.FK_DatSanh_DichVu">
+      <End Role="DichVu" EntitySet="DichVu" />
+      <End Role="DatSanh" EntitySet="DatSanh" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DatSanh_Sanh" Association="Self.FK_DatSanh_Sanh">
+      <End Role="Sanh" EntitySet="Sanh" />
+      <End Role="DatSanh" EntitySet="DatSanh" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DatSanh_Thuc_Don1" Association="Self.FK_DatSanh_Thuc_Don1">
+      <End Role="Thuc_Don" EntitySet="Thuc_Don" />
+      <End Role="DatSanh" EntitySet="DatSanh" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DichVu_LoaiDichVu" Association="Self.FK_DichVu_LoaiDichVu">
+      <End Role="LoaiDichVu" EntitySet="LoaiDichVu" />
+      <End Role="DichVu" EntitySet="DichVu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DongThucDon_MonAn" Association="Self.FK_DongThucDon_MonAn">
+      <End Role="MonAn" EntitySet="MonAn" />
+      <End Role="DongThucDon" EntitySet="DongThucDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DongThucDon_Thuc_Don1" Association="Self.FK_DongThucDon_Thuc_Don1">
+      <End Role="Thuc_Don" EntitySet="Thuc_Don" />
+      <End Role="DongThucDon" EntitySet="DongThucDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MonAn_LoaiMon" Association="Self.FK_MonAn_LoaiMon">
+      <End Role="LoaiMon" EntitySet="LoaiMon" />
+      <End Role="MonAn" EntitySet="MonAn" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

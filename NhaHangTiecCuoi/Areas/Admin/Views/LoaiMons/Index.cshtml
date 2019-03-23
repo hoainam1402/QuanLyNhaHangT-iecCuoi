@@ -1,0 +1,36 @@
+﻿@model IEnumerable<NhaHangTiecCuoi.LoaiMon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh Sách Các Loại Món Ăn</h2>
+
+<p>
+    <a href="http://localhost:50458/Admin/LoaiMons/Create" class="btn btn-success">Thêm mới</a>
+</p>
+<table class="table" cellpadding="20" border="0">
+    <tr>
+        <th>
+            Loại Món Ăn
+        </th>
+        <th>
+            Tùy Chỉnh
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenLoai)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.MaLoai }) |
+            @Html.ActionLink("Thông Tin", "Details", new { id=item.MaLoai }) |
+            @Html.ActionLink("Xóa Loại", "Delete", new { id=item.MaLoai })
+        </td>
+    </tr>
+}
+
+</table>

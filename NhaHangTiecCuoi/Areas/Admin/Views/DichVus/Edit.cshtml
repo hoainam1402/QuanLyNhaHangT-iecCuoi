@@ -1,0 +1,58 @@
+﻿@model NhaHangTiecCuoi.DichVu
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chỉnh Sửa Thông Tin Dịch Vụ</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaDV)
+
+        <div class="form-group">
+            Tên Dịch Vụ
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenDV, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenDV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           Giá Dịch Vụ
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           Mã Loại Dịch Vụ
+            <div class="col-md-10">
+                @Html.DropDownList("MaLoaiDV", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaLoaiDV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Hình Ảnh Dịch Vụ
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Img, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-success" />|
+                <a href="http://localhost:50458/Admin/DichVus" class="btn btn-danger">Hủy</a>
+            </div>
+        </div>
+    </div>
+}

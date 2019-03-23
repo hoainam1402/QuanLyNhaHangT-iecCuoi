@@ -1,0 +1,26 @@
+﻿@model NhaHangTiecCuoi.LoaiDichVu
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông Tin Loại Dịch Vụ</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Loại Dịch Vụ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLoai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaLoai }) |
+    <a href="http://localhost:50458/Admin/LoaiMons" class="btn btn-danger">Hủy</a>
+</p>

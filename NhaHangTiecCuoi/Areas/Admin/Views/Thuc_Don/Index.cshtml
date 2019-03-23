@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NhaHangTiecCuoi.Thuc_Don>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh Sách Các Thực Đơn</h2>
+
+<p>
+    <a href="http://localhost:50458/Admin/Thuc_Don/Create" class="btn btn-success">Thêm mới</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Số Lượng
+        </th>
+        <th>
+            Giá Thực Đơn
+        </th>
+        <th>
+            Tùy Chỉnh
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaTD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DonGia)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.MaTD }) |
+            @Html.ActionLink("Thông Tin", "Details", new { id=item.MaTD }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.MaTD })
+        </td>
+    </tr>
+}
+
+</table>
